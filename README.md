@@ -2,6 +2,7 @@
 UofG TDP3 repo for KiCAD files and code
 # File Structure
 - hardware: KiCad files. All PCBs can be done within the Main_Project file
+    - mechanical: Mechanical CAD files. Fusion 360 .f3d, STLs and Gcode files for 3D printing are all stored here
 - lib: Footprint libraries. Contains any custom footprints used (such as for the FRDM board).
 - software: Contains C++ code
 
