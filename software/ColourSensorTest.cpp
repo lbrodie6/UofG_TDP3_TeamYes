@@ -10,7 +10,7 @@ DigitalOut green(PTA4)
 DigitalOut blue(PTA12)
 DigitalOut lineLED(PTA13)
 AnalogOut led(PTE30);
-//AnalogIn line_threshold(PTB0);
+//AnalogIn line_threshold_trimmer(PTB0);
 int main() {
     rgb_sensor.enablePowerAndRGBC();
     rgb_sensor.setIntegrationTime( 100 );
