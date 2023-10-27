@@ -450,7 +450,24 @@
     },
     "net_colors": null,
     "netclass_assignments": null,
-    "netclass_patterns": []
+    "netclass_patterns": [
+      {
+        "netclass": "Power",
+        "pattern": "+5V"
+      },
+      {
+        "netclass": "Power",
+        "pattern": "+12V"
+      },
+      {
+        "netclass": "Power",
+        "pattern": "Net-(BT1-+)"
+      },
+      {
+        "netclass": "Power",
+        "pattern": "Net-(D1-A)"
+      }
+    ]
   },
   "pcbnew": {
     "last_paths": {
