@@ -1,57 +1,103 @@
 #include "mbed.h"
-#include "TCS3472_I2C.h"
 
-// Initialize sensor and LED
-TCS3472_I2C rgb_sensor(PTE0, PTE1);
-DigitalOut red(LED1);
 
 // Define L298N motor control pins
-DigitalOut motorPinA1(PA_0);  // Adjust these pin assignments as per your connection
-DigitalOut motorPinA2(PA_1);
-DigitalOut motorPinB1(PA_2);
-DigitalOut motorPinB2(PA_3);
+PwmOut PwmR(PTA4);//control right 
+DigitalOut Rforward(PTC3);  // Adjust these pin assignments as per your connection
+DigitalOut Rbackward(PTC4);
 
-void moveForward() {
-    motorPinA1 = 1;
-    motorPinA2 = 0;
-    motorPinB1 = 1;
-    motorPinB2 = 0;
+PwmOut PwmL(PTA5);//control left
+DigitalOut Lforward(PTC5);
+DigitalOut Lbackward(PTC6);
+
+void control_R(float dutycycle, bool direction) {
+    PwmR = dutycycle;
+    if (direction==1){
+    Rforward = 1;
+    Rbackward = 0;
+    }
+    else{
+    Rforward = 0;
+    Rbackward = 1;
+    }
 }
 
 void stopMotor() {
-    motorPinA1 = 0;
-    motorPinA2 = 0;
-    motorPinB1 = 0;
-    motorPinB2 = 0;
+    Rforward = 0;
+    Rbackward = 0;
+    Lforward = 0;
+    Lbackward = 0;
+
 }
 
-bool isBlack(int clearValue) {
-    const int blackThreshold = 100;  // Adjust this threshold as needed based on testing
-    return clearValue < blackThreshold;
+void control_L(float dutycycle, bool direction) {
+    PwmL = dutycycle;
+    if(direction==1){
+    Lforward = 1;
+    Lbackward = 0;
+    }
+    else{
+    Lforward = 0;
+    Lbackward = 1;
+    }
 }
+
+
 
 int main() {
-    rgb_sensor.enablePowerAndRGBC();
-    rgb_sensor.setIntegrationTime(100);
-
-    int rgb_readings[4];
-    while(1) {
-        rgb_sensor.getAllColors(rgb_readings);
-        printf("clear: %d, red: %d, green: %d, blue: %d\n", rgb_readings[0], rgb_readings[1], rgb_readings[2], rgb_readings[3]);
-
-        if (isBlack(rgb_readings[0])) {
-            moveForward();
-        } else {
-            stopMotor();
+    while(1){
+        for (float i = 0.0; i < 500; i++){ 
+            control_R(i/500.0,1);
+            control_L(i/500.0,1);
+            wait_us(40000);
         }
+        stopMotor();
+        wait_us(5000000);//start speed 0.5
 
-        // Rest of the color detection logic remains the same
-        if (rgb_readings[1] > rgb_readings[2] && rgb_readings[1] > rgb_readings[3]) {
-            printf("Red is highest\n");
-        }
-        if (rgb_readings[2] > rgb_readings[1] && rgb_readings[2] > rgb_readings[3]) {
-            printf("Green is highest\n");
-        }
+        control_R(0.1,1);
+        control_L(0.1,1);
+        wait_us(5000000);//start speed 0.5
+
+        stopMotor();
+        wait_us(5000000);//start speed 0.5
+
+        control_R(1,1);
+        control_L(1,1);
+        wait_us(5000000);//start speed 0.5
+
+        stopMotor();
+         wait_us(1000000);//start speed 0.5
+
+        control_R(0.1,0);
+        control_L(0.1,0);
+        wait_us(5000000);//start speed 0.5
+
+        stopMotor();
+        wait_us(1000000);//start speed 0.5
+
+        control_R(1,0);
+        control_L(1,0);
+        wait_us(5000000);//start speed 0.5
+
+        stopMotor();
+        wait_us(1000000);//start speed 0.5 
+
+        control_R(0.5,1);
+        control_L(1,1);
+        wait_us(5000000);//start speed 0.5
+
+        stopMotor();
+        wait_us(1000000);//start speed 0.5
+
+        control_R(1,1);
+        control_L(0.5,1);
+        wait_us(5000000);//start speed 0.5  
+
+        stopMotor();
+    }
+
+
+}
         if (rgb_readings[3] > rgb_readings[1] && rgb_readings[3] > rgb_readings[2]) {
             printf("Blue is highest\n");
         }
