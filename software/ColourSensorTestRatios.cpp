@@ -1,6 +1,7 @@
 #include "mbed.h"
 #include "TCS3472_I2C.h"
 //https://os.mbed.com/users/Allar/code/TCS3472_I2C/
+//ensure library has char cast to char fixed
 
 //Pin initialisation
 TCS3472_I2C rgb_sensor(PTC2, PTC1);
