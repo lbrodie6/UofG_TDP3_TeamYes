@@ -3,18 +3,18 @@
 //https://os.mbed.com/users/Allar/code/TCS3472_I2C/
 
 //Pin initialisation
-TCS3472_I2C rgb_sensor(PTE0, PTE1);
+TCS3472_I2C rgb_sensor(PTC2, PTC1);
 DigitalOut boardled(LED1);
-DigitalOut red(PTA5);
-DigitalOut green(PTA4);
-DigitalOut blue(PTA12);
-DigitalOut lineLED(PTA13);
+//DigitalOut red(PTA5);
+//DigitalOut green(PTA4);
+//DigitalOut blue(PTA12);
+//DigitalOut lineLED(PTA13);
 AnalogOut led(PTE30);
 //AnalogIn line_threshold(PTB0);
 int main() {
 //Initialising the sensor values - sent through I2C to sensor microcontroler
     rgb_sensor.enablePowerAndRGBC();
-    rgb_sensor.setIntegrationTime(5);
+    rgb_sensor.setIntegrationTime(20);
 //Variable initiation
     int line_threshold = 500;
     int red_threshold = 50;
@@ -58,10 +58,10 @@ int main() {
             on_line = true;
         }
     //Sets output pins to high or low
-        red = red_high;
-        green = green_high;
-        blue = blue_high;
-        lineLED = on_line;
+        //red = red_high;
+        //green = green_high;
+        //blue = blue_high;
+        //lineLED = on_line;
         wait_us(2000);
     }
 }
