@@ -2569,6 +2569,11 @@
     (fill (type none))
     (uuid b4f4e1a0-d171-42fd-aa4b-c6a14e4a6978)
   )
+  (rectangle (start 289.306 165.608) (end 380.492 241.808)
+    (stroke (width 0) (type default))
+    (fill (type none))
+    (uuid ed810bf1-27bd-4fd5-95cc-ff3e23f92eab)
+  )
 
   (text_box "Power switch is present, but hand-wired"
     (at 40.64 41.91 0) (size 20.32 8.89)
@@ -2600,6 +2605,11 @@
     (effects (font (size 2 2)) (justify left bottom))
     (uuid 186e28da-ada2-4c07-aabe-5d24c59e9c4f)
   )
+  (text "heatsink around MOS - should be same footprint as motor driver heatsink.\ndiode: 1N4007"
+    (at 292.862 236.474 0)
+    (effects (font (size 1.27 1.27)) (justify left bottom))
+    (uuid 54c3a27c-9489-4d65-9e6e-20cb9bdc9202)
+  )
   (text "5V Regulator" (at 20.32 71.12 0)
     (effects (font (size 2 2)) (justify left bottom))
     (uuid 8615420a-ac8f-4c6f-922a-0041026774c3)
@@ -2623,6 +2633,10 @@
   (text "FRDM Board\n" (at 212.09 31.75 0)
     (effects (font (size 2 2)) (justify left bottom))
     (uuid dc2a271d-c2aa-4b5b-b91e-2d0946b6a05e)
+  )
+  (text "Magnet Board" (at 292.608 172.212 0)
+    (effects (font (size 2 2)) (justify left bottom))
+    (uuid ea412576-eb50-4b80-902d-c6eea5fe0655)
   )
   (text "Motor Driver" (at 20.32 115.57 0)
     (effects (font (size 2 2)) (justify left bottom))
@@ -2964,6 +2978,30 @@
     )
   )
 
+  (symbol (lib_id "Mechanical:MountingHole") (at 361.95 169.926 0) (unit 1)
+    (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
+    (uuid 26298c0d-b724-4130-99e5-db8bb496c987)
+    (property "Reference" "H27" (at 364.49 168.7139 0)
+      (effects (font (size 1.27 1.27)) (justify left))
+    )
+    (property "Value" "MountingHole" (at 364.49 171.1381 0)
+      (effects (font (size 1.27 1.27)) (justify left))
+    )
+    (property "Footprint" "MountingHole:MountingHole_3mm" (at 361.95 169.926 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "Datasheet" "~" (at 361.95 169.926 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (instances
+      (project "Main_Project"
+        (path "/49595465-104c-4a4c-848b-e24eebb1e8d2"
+          (reference "H27") (unit 1)
+        )
+      )
+    )
+  )
+
   (symbol (lib_id "PCM_4ms_Power-symbol:GND") (at 229.87 128.27 0) (mirror y) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 281aaf79-a148-4daf-bae0-253236be5ced)
@@ -3232,6 +3270,30 @@
       (project "Main_Project"
         (path "/49595465-104c-4a4c-848b-e24eebb1e8d2"
           (reference "#PWR015") (unit 1)
+        )
+      )
+    )
+  )
+
+  (symbol (lib_id "Mechanical:MountingHole") (at 295.148 178.562 0) (unit 1)
+    (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
+    (uuid 4699337b-1c97-47fb-96b0-2818efa09209)
+    (property "Reference" "H23" (at 297.688 177.3499 0)
+      (effects (font (size 1.27 1.27)) (justify left))
+    )
+    (property "Value" "HeatsinkMounting" (at 297.688 179.7741 0)
+      (effects (font (size 1.27 1.27)) (justify left))
+    )
+    (property "Footprint" "new_winterbloom:M3_Heatsink_Mounting" (at 295.148 178.562 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "Datasheet" "~" (at 295.148 178.562 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (instances
+      (project "Main_Project"
+        (path "/49595465-104c-4a4c-848b-e24eebb1e8d2"
+          (reference "H23") (unit 1)
         )
       )
     )
@@ -3566,6 +3628,30 @@
     )
   )
 
+  (symbol (lib_id "Mechanical:MountingHole") (at 361.95 180.086 0) (unit 1)
+    (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
+    (uuid 5a26c392-5552-4539-a56b-1e1f4672afbe)
+    (property "Reference" "H28" (at 364.49 178.8739 0)
+      (effects (font (size 1.27 1.27)) (justify left))
+    )
+    (property "Value" "MountingHole" (at 364.49 181.2981 0)
+      (effects (font (size 1.27 1.27)) (justify left))
+    )
+    (property "Footprint" "MountingHole:MountingHole_3mm" (at 361.95 180.086 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "Datasheet" "~" (at 361.95 180.086 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (instances
+      (project "Main_Project"
+        (path "/49595465-104c-4a4c-848b-e24eebb1e8d2"
+          (reference "H28") (unit 1)
+        )
+      )
+    )
+  )
+
   (symbol (lib_id "PCM_4ms_Power-symbol:+12V") (at 101.6 135.89 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 5c3605fe-4495-4711-b1c0-1129cf12623a)
@@ -3712,6 +3798,30 @@
       (project "Main_Project"
         (path "/49595465-104c-4a4c-848b-e24eebb1e8d2"
           (reference "#PWR021") (unit 1)
+        )
+      )
+    )
+  )
+
+  (symbol (lib_id "Mechanical:MountingHole") (at 342.9 169.926 0) (unit 1)
+    (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
+    (uuid 6ea2797c-6a5b-4794-bbf1-ed286a1d56c4)
+    (property "Reference" "H25" (at 345.44 168.7139 0)
+      (effects (font (size 1.27 1.27)) (justify left))
+    )
+    (property "Value" "MountingHole" (at 345.44 171.1381 0)
+      (effects (font (size 1.27 1.27)) (justify left))
+    )
+    (property "Footprint" "MountingHole:MountingHole_3mm" (at 342.9 169.926 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "Datasheet" "~" (at 342.9 169.926 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (instances
+      (project "Main_Project"
+        (path "/49595465-104c-4a4c-848b-e24eebb1e8d2"
+          (reference "H25") (unit 1)
         )
       )
     )
@@ -4200,6 +4310,30 @@
       (project "Main_Project"
         (path "/49595465-104c-4a4c-848b-e24eebb1e8d2"
           (reference "U1") (unit 1)
+        )
+      )
+    )
+  )
+
+  (symbol (lib_id "Mechanical:MountingHole") (at 316.738 178.562 0) (unit 1)
+    (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
+    (uuid 953f605c-568e-4591-b380-6dfb4dbe1e75)
+    (property "Reference" "H24" (at 319.278 177.3499 0)
+      (effects (font (size 1.27 1.27)) (justify left))
+    )
+    (property "Value" "HeatsinkMounting" (at 319.278 179.7741 0)
+      (effects (font (size 1.27 1.27)) (justify left))
+    )
+    (property "Footprint" "new_winterbloom:M3_Heatsink_Mounting" (at 316.738 178.562 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "Datasheet" "~" (at 316.738 178.562 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (instances
+      (project "Main_Project"
+        (path "/49595465-104c-4a4c-848b-e24eebb1e8d2"
+          (reference "H24") (unit 1)
         )
       )
     )
@@ -5232,6 +5366,30 @@
       (project "Main_Project"
         (path "/49595465-104c-4a4c-848b-e24eebb1e8d2"
           (reference "D5") (unit 1)
+        )
+      )
+    )
+  )
+
+  (symbol (lib_id "Mechanical:MountingHole") (at 342.9 180.086 0) (unit 1)
+    (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
+    (uuid d9c82c3e-f024-4faa-a589-5cccb340538c)
+    (property "Reference" "H26" (at 345.44 178.8739 0)
+      (effects (font (size 1.27 1.27)) (justify left))
+    )
+    (property "Value" "MountingHole" (at 345.44 181.2981 0)
+      (effects (font (size 1.27 1.27)) (justify left))
+    )
+    (property "Footprint" "MountingHole:MountingHole_3mm" (at 342.9 180.086 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "Datasheet" "~" (at 342.9 180.086 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (instances
+      (project "Main_Project"
+        (path "/49595465-104c-4a4c-848b-e24eebb1e8d2"
+          (reference "H26") (unit 1)
         )
       )
     )
