@@ -4,7 +4,7 @@
 // ensure library has char cast to char fixed
 
 // Pin initialisation
-TCS3472_I2C rgb_sensor_R(PTC11, PTC10);
+TCS3472_I2C rgb_sensor_R(PTE0, PTE1);
 TCS3472_I2C rgb_sensor_L(PTC9, PTC8);
 DigitalOut boardled(LED1);
 DigitalOut Electromagnet(PTE31,PullUp);
@@ -45,6 +45,8 @@ int main() {
     float threshold[4] = {1250.0, 3.0, 3.0, 2.5};
     int rgb_readings_R[4];
     int rgb_readings_L[4];
+    float clear_R = rgb_readings_R[0];
+    float clear_L = rgb_readings_L[0];
     float line_constant;
     // Right Sensor
     float red_ratio_R;
@@ -123,8 +125,9 @@ int main() {
     //Clear values Left-Right comparison
         // line_constant will be a variable with a value between 0.0-1.0, where [0.0 -> Hard LEFT] & [1.0 -> Hard RIGHT]
         // real values for this will vary between about 0.25-0.75 from testing
-        line_constant = (rgb_readings_L[0]/(rgb_readings_R[0]+rgb_readings_L[0]));
+        line_constant = (1.0*rgb_readings_L[0]/(1.0*rgb_readings_R[0]+1.0*rgb_readings_L[0]));
         
+        printf("Line Constant: %d \n", line_constant);
         wait_us(200000); // Replace with PID controller and move wait to after - wait must be >20000us to allow for integration time
 
 

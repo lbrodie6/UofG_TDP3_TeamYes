@@ -1,4 +1,4 @@
-22756105877710411
+22757828976710528
 AudioJacks
 Jack_3.5mm_Cliff_FCR1281_Horizontal
 
@@ -93981,6 +93981,13 @@ Potentiometer_Bourns_PTA45x3-2x
 0
 7
 3
+new_winterbloom
+Potentiometer_Bourns_PTA2043_Single_Slide3D
+Bourns single-gang slide potentiometer, 20.0mm travel, https://www.bourns.com/docs/Product-Datasheets/pta.pdf
+Bourns single-gang slide potentiometer 20.0mm
+0
+7
+4
 new_winterbloom
 QFN+QFP-64_SAMD51
 QFN, 64 Pin (https://datasheet.lcsc.com/szlcsc/Realtek-Semicon-RTL8211EG-VB-CG_C69264.pdf#page=77), generated with kicad-footprint-generator ipc_noLead_generator.py
