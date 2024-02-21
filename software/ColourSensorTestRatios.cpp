@@ -47,7 +47,7 @@ int main() {
     int rgb_readings_L[4];
     float clear_R = rgb_readings_R[0];
     float clear_L = rgb_readings_L[0];
-    float line_constant;
+    float line_constant = 0;
     // Right Sensor
     float red_ratio_R;
     float green_ratio_R;
