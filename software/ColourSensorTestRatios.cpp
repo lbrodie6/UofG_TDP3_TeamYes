@@ -4,8 +4,8 @@
 // ensure library has char cast to char fixed
 
 // Pin initialisation
-TCS3472_I2C rgb_sensor_R(PTE0, PTE1);
-TCS3472_I2C rgb_sensor_L(PTC9, PTC8);
+TCS3472_I2C rgb_sensor_L(PTE0, PTE1);
+TCS3472_I2C rgb_sensor_R(PTC9, PTC8);
 DigitalOut boardled(LED1);
 DigitalOut Electromagnet(PTE31,PullUp);
 // DigitalOut green(PTA4);
@@ -19,6 +19,14 @@ void sensorsInitialise(int int_time) {
     rgb_sensor_L.enablePowerAndRGBC();
     rgb_sensor_R.setIntegrationTime(int_time);
     rgb_sensor_L.setIntegrationTime(int_time);
+}
+
+double getLineConstant(int clear_R, int clear_L) {
+        int denominator = ((clear_L) + (clear_R));
+        int numerator = (clear_L);
+        float ratio = static_cast<float>(numerator) / denominator;
+        int percent = static_cast<int>(ratio*100);
+        return ratio;
 }
 
 // void sensorsGetRatios(int rgb_readings_R[4], int rgb_readings_L[4])/{
@@ -45,9 +53,7 @@ int main() {
     float threshold[4] = {1250.0, 3.0, 3.0, 2.5};
     int rgb_readings_R[4];
     int rgb_readings_L[4];
-    float clear_R = rgb_readings_R[0];
-    float clear_L = rgb_readings_L[0];
-    float line_constant = 0;
+    double line_constant;
     // Right Sensor
     float red_ratio_R;
     float green_ratio_R;
@@ -65,13 +71,16 @@ int main() {
     // Collect RGB readings from sensors
         rgb_sensor_R.getAllColors(rgb_readings_R);
         rgb_sensor_L.getAllColors(rgb_readings_L);
-    
+        line_constant = getLineConstant(rgb_readings_R[0],rgb_readings_L[0]);
+        int percent = static_cast<int>(line_constant*100);
+        printf("Line constant percent --- \nPercent (LC*100): %d \n", percent);
     // Prints RGB readings to output, e.g. Putty. (For bug testing/troubleshooting)    
         //printf("RIGHT: clear: %d, red: %d, green: %d, blue: %d\n", rgb_readings_R[0],rgb_readings_R[1], rgb_readings_R[2], rgb_readings_R[3]);
         //printf("LEFT: clear: %d, red: %d, green: %d, blue: %d\n", rgb_readings_L[0],rgb_readings_L[1], rgb_readings_L[2], rgb_readings_L[3]);
     
     // Ratios of colours divided by other two colour values values
         // Right Sensor
+        
         red_ratio_R = rgb_readings_R[1] / ((rgb_readings_R[2] + rgb_readings_R[3]));
         green_ratio_R = rgb_readings_R[2] / ((rgb_readings_R[1] + rgb_readings_R[3]));
         blue_ratio_R = rgb_readings_R[3] / ((rgb_readings_R[1] + rgb_readings_R[2]));
@@ -122,37 +131,30 @@ int main() {
         blue_L = true;
         }
 
-    //Clear values Left-Right comparison
-        // line_constant will be a variable with a value between 0.0-1.0, where [0.0 -> Hard LEFT] & [1.0 -> Hard RIGHT]
-        // real values for this will vary between about 0.25-0.75 from testing
-        line_constant = (1.0*rgb_readings_L[0]/(1.0*rgb_readings_R[0]+1.0*rgb_readings_L[0]));
-        
-        printf("Line Constant: %d \n", line_constant);
-        wait_us(200000); // Replace with PID controller and move wait to after - wait must be >20000us to allow for integration time
+    
+        wait_us(400000); // Replace with PID controller and move wait to after - wait must be >20000us to allow for integration time
+        // // Red Disk flags for pickup and drop off
+        // if (red_R == true && red_L == false) {
+        // // Electromagnet Trigger ON
+        // red_pickup = true;
+        // } else if (red_R == true && red_L == true && red_pickup == true) {
+        // // Electromagnet Trigger OFF
+        // red_pickup = false;
+        // }
+        // else{
+        //         wait_us(1);
+        // }
 
-
-        // Red Disk flags for pickup and drop off
-        if (red_R == true && red_L == false) {
-        // Electromagnet Trigger ON
-        red_pickup = true;
-        } else if (red_R == true && red_L == true && red_pickup == true) {
-        // Electromagnet Trigger OFF
-        red_pickup = false;
-        }
-        else{
-                wait_us(1);
-        }
-
-        // Blue Disk flags for pickup and drop off
-        if (blue_R == true && blue_L == false) {
-        // Electromagnet Trigger ON
-        Electromagnet = 0;
-        } else if (blue_R == true && blue_L == true && blue_pickup == true) {
-        // Electromagnet Trigger OFF
-        blue_pickup = false;
-        }
-        else{
-            wait_us(1);      
-        }
+        // // Blue Disk flags for pickup and drop off
+        // if (blue_R == true && blue_L == false) {
+        // // Electromagnet Trigger ON
+        // Electromagnet = 0;
+        // } else if (blue_R == true && blue_L == true && blue_pickup == true) {
+        // // Electromagnet Trigger OFF
+        // blue_pickup = false;
+        // }
+        // else{
+        //     wait_us(1);      
+        // }
     }
 }
