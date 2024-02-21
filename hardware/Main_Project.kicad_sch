@@ -3212,7 +3212,7 @@
     (effects (font (size 1.27 1.27)) (justify left top))
     (uuid 63cfa3a5-2f48-4a60-8bc8-0ea0622f36da)
   )
-  (text_box "R_Enable - PTA4, 3\nL_Enable - PTA2, 6\nR1 - PTD4, 5\nR2 - PTA12, 4\nL1- PTC8, 1\nL2 - PTA5, 2"
+  (text_box "R_Enable - PTA12, 3\nL_Enable - PTA1, 6\nR1 - PTA2, 5\nR2 - PTD4, 4\nL1- PTA5, 1\nL2 - PTA4, 2"
     (at 24.13 171.45 0) (size 22.86 13.97)
     (stroke (width 0) (type default))
     (fill (type none))
