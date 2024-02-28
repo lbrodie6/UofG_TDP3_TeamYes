@@ -2,16 +2,30 @@
 
 
 // Define L298N motor control pins
-PwmOut PwmR(PTA4);//control right 
+PwmOut PwmR(PTA4);          // PWM for right side motors
 DigitalOut Rforward(PTC3);  // Adjust these pin assignments as per your connection
 DigitalOut Rbackward(PTC4);
 
-PwmOut PwmL(PTA5);//control left
+PwmOut PwmL(PTA5);          // PWM for left side motors
 DigitalOut Lforward(PTC5);
 DigitalOut Lbackward(PTC6);
 
 void control_R(float dutycycle, bool direction) {
-    PwmR = dutycycle;
+    if (PWML != dutycycle;){
+        PWML = dutycycle;
+    }
+    if (direction == 1){
+        Rforward = 1;
+        Rbackward =0;
+    }
+    else{
+        Rforward = 0;
+        Rbackward = 1;
+    }
+}
+    
+####    
+PwmR ! = dutycycle;
     if (direction==1){
     Rforward = 1;
     Rbackward = 0;
@@ -21,6 +35,7 @@ void control_R(float dutycycle, bool direction) {
     Rbackward = 1;
     }
 }
+####
 
 void stopMotor() {
     Rforward = 0;
@@ -31,7 +46,22 @@ void stopMotor() {
 }
 
 void control_L(float dutycycle, bool direction) {
-    PwmL = dutycycle;
+    if (PWMR != dutycycle){
+        PWMR =dutycycle;
+    }
+    if (direction == 1){
+        Lforward = 1;
+        Lbackward = 0;
+    }
+    else{
+        Lforward = 0;
+        Lbackward = 1;
+    }
+    
+    
+    
+    ####
+    PwmL ! = dutycycle;
     if(direction==1){
     Lforward = 1;
     Lbackward = 0;
@@ -40,6 +70,7 @@ void control_L(float dutycycle, bool direction) {
     Lforward = 0;
     Lbackward = 1;
     }
+    ####
 }
 
 
